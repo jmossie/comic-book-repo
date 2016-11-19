@@ -105,6 +105,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Models\Artist.cs" />
+    <Compile Include="Models\ComicBook.cs" />
     <Compile Include="Controllers\Class1.cs" />
     <Compile Include="Controllers\ComicBooksController.cs" />
     <Compile Include="Global.asax.cs">
@@ -130,7 +132,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
