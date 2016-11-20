@@ -105,8 +105,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Data\DrawingRepository.cs" />
     <Compile Include="Data\ComicBookRepository.cs" />
+    <Compile Include="Models\DrawingRevision.cs" />
     <Compile Include="Models\Artist.cs" />
+    <Compile Include="Models\Drawing.cs" />
     <Compile Include="Models\ComicBook.cs" />
     <Compile Include="Controllers\Class1.cs" />
     <Compile Include="Controllers\ComicBooksController.cs" />
