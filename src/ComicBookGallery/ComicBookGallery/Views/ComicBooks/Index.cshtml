@@ -1,20 +1,15 @@
-﻿@model ComicBookGallery.Models.ComicBook[]
+﻿@model ComicBookGallery.Models.Drawing[]
 @{
-    ViewBag.Title = "Comic Books";
+    ViewBag.Title = "Drawing Register";
 }
 
 <h2>@ViewBag.Title</h2>
 
 <div class="row">
-    @foreach (var comicBook in Model)
+    @foreach (var drawing in Model)
     {
         <div class="col-md-3">
-            <h4>@Html.ActionLink(comicBook.DisplayName, "Detail", new { id = comicBook.Id })</h4>
-            <a href="@Url.Action("Detail",new { id = comicBook.Id } )">
-                <img src="~/Images/@comicBook.CoverImageFileName"
-                     alt="@comicBook.DisplayName"
-                     class="img-responsive" />
-            </a>
+            <h4>@Html.ActionLink(drawing.DisplayName, "Detail", new { id = drawing.Id })</h4>
         </div>
     }
     
