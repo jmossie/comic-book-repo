@@ -6,17 +6,45 @@
 <h2>@ViewBag.Title</h2>
 
 <div class="row">
-    @foreach (var drawing in Model)
-    {
-        <div class="well">  
-            <h4>@Html.ActionLink(drawing.DisplayName, "Detail", new { id = drawing.Id })</h4>
-            @foreach (var revision in drawing.DrawingRevisions)
-            {
-                <h5 style="margin-left:20px;">@drawing.DrawingNumber/@revision.ID-@revision.Name</h5>
-            }
-            <button class="btn-default">Edit</button>
-        </div>
-    }
     
+    <table class="table table-striped">
+        <thead>
+            <tr>  
+                <th>Drawing Number</th>
+                <th>Drawing Revision</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var drawing in Model)
+            {
+                <tr>
+                    
+                    <td>@drawing.DrawingNumber</td>
+                    <td></td>
+                    <td>@drawing.DrawingName</td>
+                    <!--<td><button class="btn-primary">Add Rev.</button></td>-->
+                    <td>
+                        @Html.ActionLink("New Rev.", "Create", "Revision", @drawing.Id, new { @class = "btn btn-xs btn-info" })
+                        @Html.ActionLink("Edit", "Detail", "Drawings", new { id = drawing.Id }, new { @class = "btn btn-xs btn-info"})
+                    </td>
+                    </tr>
+                    foreach (var revision in drawing.DrawingRevisions)
+                    {
+                    <tr>
+                        <td></td>
+                        <td>@revision.ID</td> 
+                        <td>@revision.Name</td>
+                        <td>@Html.ActionLink("Edit", "Detail", "Drawings", new { id = drawing.Id }, new { @class = "btn btn-xs btn-info" })</td>
+                    </tr>
+                    }
+                    
+                    
+                
+            }
+            </tbody>
+
+</table> 
 </div>
 

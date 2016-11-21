@@ -1,4 +1,4 @@
-﻿@model ComicBookGallery.Models.ComicBook
+﻿@model ComicBookGallery.Models.Drawing
 
 @{
     ViewBag.Title = Model.DisplayName;
@@ -10,28 +10,21 @@
 <div class="row">
     <div class="col-md-6">
         <div class="well">
-            <h5><label>Series Title:</label> @Model.SeriesTitle</h5>
-            <h5><label>Issue #:</label> @Model.IssueNumber</h5>
-            <h5><label>Favorite:</label> @(Model.Favorite ? "Yes" : "No")</h5>
-            @if (Model.Artists.Length > 0)
+            <h5><label>Series Title:</label> @Model.DrawingName</h5>
+            <h5><label>Issue #:</label> @Model.DrawingNumber</h5>
+            @if (Model.DrawingRevisions.Length > 0)
             {
                 <h5>Artists:</h5>
                 <div>
                     <ul>
-                        @foreach (var artist in Model.Artists)
+                        @foreach (var drawing in Model.DrawingRevisions)
                         {
-                            <li>@artist.Role :@artist.Name</li>
+                            <li>@drawing.ID</li>
                         }
                     </ul>
                 </div>
             }
         </div>
-        <h5>Description:</h5>
-        <div>@Html.Raw(@Model.DescriptionHtml)</div>
-    </div>
-    <div class="col-md-6">
-        <img src="/Images/@Model.CoverImageFileName"
-             alt="@Model.DisplayName" class="img-responsive" />
     </div>
 </div>
 
