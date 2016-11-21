@@ -8,8 +8,13 @@
 <div class="row">
     @foreach (var drawing in Model)
     {
-        <div class="col-md-3">
+        <div class="well">  
             <h4>@Html.ActionLink(drawing.DisplayName, "Detail", new { id = drawing.Id })</h4>
+            @foreach (var revision in drawing.DrawingRevisions)
+            {
+                <h5 style="margin-left:20px;">@drawing.DrawingNumber/@revision.ID-@revision.Name</h5>
+            }
+            <button class="btn-default">Edit</button>
         </div>
     }
     
