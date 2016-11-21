@@ -48,6 +48,11 @@ namespace ComicBookGallery.Data
         {
             return _drawings;
         }
+
+        public Drawing[] GetDrawings(string searchString)
+        {
+            return _drawings.Where(d => d.DisplayName.Contains(searchString)).ToArray();
+        }
         public Drawing GetDrawing(int id)
         {
             Drawing drawingToReturn = null;

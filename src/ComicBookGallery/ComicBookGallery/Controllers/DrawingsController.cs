@@ -16,10 +16,15 @@ namespace ComicBookGallery.Controllers
         {
             _drawingRepository = new DrawingRepository();
         }
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
             var drawings = _drawingRepository.GetDrawings();
-
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                drawings = _drawingRepository.GetDrawings(searchString);
+            }
+        
+         
             return View(drawings);
         }
         public ActionResult Detail(int? id)
