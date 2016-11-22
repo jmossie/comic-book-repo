@@ -38,5 +38,14 @@ namespace ComicBookGallery.Controllers
          
             return View(drawing);
         }
+        public ActionResult RevCreate(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            var drawing = _drawingRepository.GetDrawing((int)id);
+            return View(drawing);
+        }
     }
 }

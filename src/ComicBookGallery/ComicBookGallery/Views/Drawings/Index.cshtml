@@ -26,7 +26,7 @@
                     <td>@drawing.DrawingName</td>
                     <!--<td><button class="btn-primary">Add Rev.</button></td>-->
                     <td>
-                        @Html.ActionLink("New Rev.", "Create", "Revision", @drawing.Id, new { @class = "btn btn-xs btn-info" })
+                        @Html.ActionLink("New Rev.", "RevCreate", "Drawings", new { id = drawing.Id }, new { @class = "btn btn-xs btn-info" })
                         @Html.ActionLink("Edit", "Detail", "Drawings", new { id = drawing.Id }, new { @class = "btn btn-xs btn-info"})
                     </td>
                     </tr>
