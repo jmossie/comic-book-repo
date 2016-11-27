@@ -23,8 +23,8 @@ namespace ComicBookGallery.Controllers
             {
                 drawings = _drawingRepository.GetDrawings(searchString);
             }
-        
-         
+            var numDrawings = drawings.Count();
+            ViewBag.NumOfDrawings = numDrawings;
             return View(drawings);
         }
         public ActionResult Detail(int? id)

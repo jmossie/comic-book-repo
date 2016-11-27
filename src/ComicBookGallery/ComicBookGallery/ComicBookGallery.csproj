@@ -107,6 +107,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DrawingsController.cs" />
+    <Compile Include="Data\Data.cs" />
     <Compile Include="Data\DrawingRepository.cs" />
     <Compile Include="Data\ComicBookRepository.cs" />
     <Compile Include="Models\DrawingRevision.cs" />
@@ -132,6 +133,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Drawings\Index.cshtml" />
     <Content Include="Views\Drawings\RevCreate.cshtml" />
+    <Content Include="Views\Shared\_Logo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

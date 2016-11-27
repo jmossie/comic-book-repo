@@ -3,6 +3,26 @@
     ViewBag.Title = "Drawing Register";
 }
 
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @TempData["Message"]
+    </div>
+}
+
+<div class="stats">
+    <h2 class="stats-header h3">Number of Drawings</h2>
+    <div class="stats-left">
+        <span class="stats-number">@ViewBag.NumOfDrawings.ToString("n0")</span> total
+    </div>
+    <div class="stats-right">
+        <span class="stats-number">Something</span> total
+    </div>
+</div>
+
 <h2>@ViewBag.Title</h2>
 
 <div class="row">
