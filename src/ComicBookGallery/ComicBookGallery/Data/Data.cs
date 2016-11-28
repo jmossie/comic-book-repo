@@ -32,10 +32,10 @@ namespace ComicBookGallery.Data
             };
             var drawings = new List<Drawing>()
             {
-                new Drawing(1, "7676898921", "First Drawing"),
-                new Drawing(1, "7676898921", "First Drawing"),
-                new Drawing(1, "7676898921", "First Drawing"),
-                new Drawing(1, "7676898921", "First Drawing")
+                new Drawing(1, "7676898921", "First Drawing", 2016, 11, 27),
+                new Drawing(2, "4343242", "Second Drawing", 2016, 10, 27),
+                new Drawing(3, "7545465-767", "Third Drawing", 2016, 9, 27),
+                new Drawing(4, "53435432-8586", "Fourth Drawing", 2016, 8, 27)
             };
             Drawings = drawings;
             DrawingRevisions = drawingRevisions;

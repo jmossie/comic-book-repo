@@ -1,6 +1,18 @@
 ﻿@{
     var applicationName = "Engineering Process Management";
 }
+@helper GetAddEntryButtonVisibility()
+{
+if ((string)ViewContext.RouteData.Values["controller"] == "Drawings" &&
+    (string)ViewContext.RouteData.Values["action"] == "Add")
+{
+        <text>hidden</text>
+}
+else
+{
+        <text>visible</text>
+}
+}
 
 <!DOCTYPE html>
 <html>
@@ -32,7 +44,7 @@
                 @*@Html.ActionLink("Engineering Process Management", "Index", "Drawings", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
             <ul class="nav navbar-nav"></ul>
-            <a href="@Url.Action("Add", "Drawings")"
+            <a href="@Url.Action("Add", "Drawings")" style="visibility: @GetAddEntryButtonVisibility()"
                class="btn btn-primary navbar-btn navbar-right">
                 <span class="glyphicon glyphicon-plus"></span> Add Drawing
             </a>

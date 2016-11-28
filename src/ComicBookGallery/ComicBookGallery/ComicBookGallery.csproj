@@ -134,6 +134,8 @@
     <Content Include="Views\Drawings\Index.cshtml" />
     <Content Include="Views\Drawings\RevCreate.cshtml" />
     <Content Include="Views\Shared\_Logo.cshtml" />
+    <Content Include="Views\Drawings\Add.cshtml" />
+    <Content Include="Views\Drawings\_EntryForm.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

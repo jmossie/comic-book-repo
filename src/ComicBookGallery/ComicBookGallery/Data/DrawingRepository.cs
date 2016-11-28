@@ -8,63 +8,25 @@ namespace ComicBookGallery.Data
 {
     public class DrawingRepository
     {
-        private static Drawing[] _drawings = new Drawing[]
-{
-    new Drawing()
-    {
-        Id = 1,
-        DrawingNumber = "1298787-009",
-        DrawingName = "First Drawing",
-        DrawingRevisions = new DrawingRevision[]
+
+  
+        public List<Drawing> GetDrawings()
         {
-            new DrawingRevision() { Name = "1st Revision", ID = "A", Status = DrawingRevision.ReleaseStatus.Released },
-            new DrawingRevision() { Name = "2nd Revision", ID = "B", Status = DrawingRevision.ReleaseStatus.Review }
-        }
-    },
-    new Drawing()
-    {
-        Id = 2,
-        DrawingNumber = "3243243-009",
-        DrawingName = "Second Drawing",
-        DrawingRevisions = new DrawingRevision[]
-        {
-            new DrawingRevision() { Name = "1st Revision", ID = "A", Status = DrawingRevision.ReleaseStatus.Released },
-            new DrawingRevision() { Name = "2nd Revision", ID = "B", Status = DrawingRevision.ReleaseStatus.Review }
-        }
-    },
-        new Drawing()
-    {
-        Id = 3,
-        DrawingNumber = "4343425-012",
-        DrawingName = "Third Drawing",
-        DrawingRevisions = new DrawingRevision[]
-        {
-            new DrawingRevision() { Name = "1st Revision", ID = "A", Status = DrawingRevision.ReleaseStatus.Released },
-            new DrawingRevision() { Name = "2nd Revision", ID = "B", Status = DrawingRevision.ReleaseStatus.Review }
-        }
-    },
-};
-        public Drawing[] GetDrawings()
-        {
-            return _drawings;
+        return Data.Drawings;
         }
 
-        public Drawing[] GetDrawings(string searchString)
-        {
-            return _drawings.Where(d => d.DisplayName.Contains(searchString)).ToArray();
-        }
+
         public Drawing GetDrawing(int id)
         {
-            Drawing drawingToReturn = null;
-            foreach (var drawing in _drawings)
-            {
-                if (drawing.Id == id)
-                {
-                    drawingToReturn = drawing;
-                    break;
-                }
-            }
-            return drawingToReturn;
+            Drawing drawing = Data.Drawings.Where(d => d.Id == id).SingleOrDefault();
+
+            return drawing;
+        }
+        public void AddDrawing(Drawing drawing)
+        {
+            int nextAvailableEntryId = Data.Drawings.Max(d => d.Id) + 1;
+            drawing.Id = nextAvailableEntryId;
+            Data.Drawings.Add(drawing);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model ComicBookGallery.Models.Drawing[]
+﻿@model List<ComicBookGallery.Models.Drawing>
 @{
     ViewBag.Title = "Drawing Register";
 }
@@ -50,7 +50,7 @@
                         @Html.ActionLink("Edit", "Detail", "Drawings", new { id = drawing.Id }, new { @class = "btn btn-xs btn-info"})
                     </td>
                     </tr>
-                    foreach (var revision in drawing.DrawingRevisions)
+                    @*foreach (var revision in drawing.DrawingRevisions)
                     {
                     <tr>
                         <td></td>
@@ -58,7 +58,7 @@
                         <td>@revision.Name</td>
                         <td>@Html.ActionLink("Edit", "Detail", "Drawings", new { id = drawing.Id }, new { @class = "btn btn-xs btn-info" })</td>
                     </tr>
-                    }
+                    }*@
                     
                     
                 
