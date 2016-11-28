@@ -28,5 +28,27 @@ namespace ComicBookGallery.Data
             drawing.Id = nextAvailableEntryId;
             Data.Drawings.Add(drawing);
         }
+        public void UpdateDrawing(Drawing drawing)
+        {
+            int drawingIndex = Data.Drawings.FindIndex(d => d.Id == drawing.Id);
+
+            if (drawingIndex == -1)
+            {
+                throw new Exception(
+                    string.Format("Unable to find a drawing with an ID of {0}", drawing.Id));
+            }
+            Data.Drawings[drawingIndex] = drawing;
+        }
+        public void DeleteDrawing(int Id)
+        {
+            int drawingIndex = Data.Drawings.FindIndex(d => d.Id == Id);
+
+            if (drawingIndex == -1)
+            {
+                throw new Exception(
+                    string.Format("Unable to find a drawing with an ID of {0}", Id));
+            }
+            Data.Drawings.RemoveAt(drawingIndex);
+        }
     }
 }

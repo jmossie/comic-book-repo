@@ -37,7 +37,7 @@ namespace ComicBookGallery.Controllers
         [HttpPost]
         public ActionResult Add(Drawing drawing)
         {
-            //ValidateEntry(drawing);
+            ValidateEntry(drawing);
             if (ModelState.IsValid)
             {
                 _drawingRepository.AddDrawing(drawing);
@@ -60,6 +60,17 @@ namespace ComicBookGallery.Controllers
          
             return View(drawing);
         }
+        [HttpPost]
+        public ActionResult Detail(Drawing drawing)
+        {
+            if (ModelState.IsValid)
+            {
+                _drawingRepository.UpdateDrawing(drawing);
+                TempData["Message"] = "Your entry was successfully updated";
+                return RedirectToAction("Index");
+            }
+            return View(drawing);
+        }
         public ActionResult RevCreate(int? id)
         {
             if (id == null)
@@ -69,15 +80,42 @@ namespace ComicBookGallery.Controllers
             var drawing = _drawingRepository.GetDrawing((int)id);
             return View(drawing);
         }
-        //private void ValidateEntry(Drawing drawing)
-        //{
-   
-        //    if (ModelState.IsValidField("DrawingNumber"))
-        //    {
-        //        ModelState.AddModelError("DrawingNumber",
-        //            "The Drawing Number field is required.");
-        //    }
-        //}
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Drawing drawing = _drawingRepository.GetDrawing((int)id);
+            if (drawing == null)
+            {
+                return HttpNotFound();
+            }
+            return View(drawing);
+        }
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            _drawingRepository.DeleteDrawing(id);
+            TempData["Message"] = "Your entry was successfully deleted";
+            return RedirectToAction("Index");
+
+        }
+        private void ValidateEntry(Drawing drawing)
+        {
+            var drawings = _drawingRepository.GetDrawings();
+            var notValid = drawings.Exists(d => d.DrawingNumber == drawing.DrawingNumber);
+            if (notValid)
+            {
+                ModelState.AddModelError("DrawingNumber", "The Drawing Number already exists.");
+            }
+            if (!ModelState.IsValidField("DrawingNumber") && !notValid)
+            {
+                ModelState.AddModelError("DrawingNumber",
+                    "The Drawing Number field is required.");
+            }
+        }
 
     }
 }
