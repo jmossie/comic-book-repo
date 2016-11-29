@@ -22,6 +22,17 @@ namespace ComicBookGallery.Data
 
             return drawing;
         }
+        public List<DrawingRevision> GetRevisions()
+        {
+            return Data.DrawingRevisions;
+        }
+        public DrawingRevision GetDrwSpecificRevision(int id, string rid)
+        {
+            //List<DrawingRevision> revisions = Data.DrawingRevisions.Where(dr => dr.DrawingId == id).ToList();
+            var drawing = Data.Drawings.Where(d => d.Id == id).SingleOrDefault();
+            var revision = drawing.Revisions.Where(r => r.ID == rid).SingleOrDefault();
+            return revision;
+        }
         public void AddDrawing(Drawing drawing)
         {
             int nextAvailableEntryId = Data.Drawings.Max(d => d.Id) + 1;

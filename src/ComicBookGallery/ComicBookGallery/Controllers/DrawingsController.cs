@@ -17,7 +17,7 @@ namespace ComicBookGallery.Controllers
         {
             _drawingRepository = new DrawingRepository();
         }
-        public ActionResult Index(string searchString)
+        public ActionResult Index()
         {
             var drawings = _drawingRepository.GetDrawings();
             var numDrawings = drawings.Count();
@@ -70,6 +70,19 @@ namespace ComicBookGallery.Controllers
                 return RedirectToAction("Index");
             }
             return View(drawing);
+        }
+        public ActionResult RevDetail(string rid)
+        {
+            //if (rid == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            string[] specificRev = rid.Split('x');
+            var rev = specificRev[0];
+            var drw = Convert.ToInt32(specificRev[1]);
+            var revision = _drawingRepository.GetDrwSpecificRevision(drw,rev);
+
+            return View(revision);
         }
         public ActionResult RevCreate(int? id)
         {
