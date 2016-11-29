@@ -50,6 +50,10 @@ namespace ComicBookGallery.Data
             }
             Data.Drawings[drawingIndex] = drawing;
         }
+        public void UpdateRevision(DrawingRevision revision)
+        {
+            //need to complete this but need to first investigate how to work with revision as seperate objects
+        }
         public void DeleteDrawing(int Id)
         {
             int drawingIndex = Data.Drawings.FindIndex(d => d.Id == Id);

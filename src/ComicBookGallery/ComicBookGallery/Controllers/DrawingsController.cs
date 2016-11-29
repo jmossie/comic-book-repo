@@ -73,15 +73,28 @@ namespace ComicBookGallery.Controllers
         }
         public ActionResult RevDetail(string rid)
         {
-            //if (rid == null)
-            //{
-            //    return HttpNotFound();
-            //}
+            if (rid == null)
+            {
+                return HttpNotFound();
+            }
             string[] specificRev = rid.Split('x');
-            var rev = specificRev[0];
-            var drw = Convert.ToInt32(specificRev[1]);
+            var rev = specificRev[1];
+            var drw = Convert.ToInt32(specificRev[0]);
             var revision = _drawingRepository.GetDrwSpecificRevision(drw,rev);
-
+            //return View();
+            SetupStatusSelectListItems();
+            return View(revision);
+        }
+        [HttpPost]
+        public ActionResult RevDetail(DrawingRevision revision)
+        {
+            if (ModelState.IsValid)
+            {
+                _drawingRepository.UpdateRevision(revision);
+                TempData["Message"] = "Your entry was successfully updated";
+                return RedirectToAction("Index");
+            }
+            SetupStatusSelectListItems();
             return View(revision);
         }
         public ActionResult RevCreate(int? id)
@@ -128,6 +141,11 @@ namespace ComicBookGallery.Controllers
                 ModelState.AddModelError("DrawingNumber",
                     "The Drawing Number field is required.");
             }
+        }
+        private void SetupStatusSelectListItems()
+        {
+            ViewBag.StatusSelectListItems = new SelectList(
+               Data.Data.Statuses, "Id", "Name");
         }
 
     }

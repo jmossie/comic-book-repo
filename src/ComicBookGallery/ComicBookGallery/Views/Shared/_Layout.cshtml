@@ -5,7 +5,8 @@
 {
 if ((string)ViewContext.RouteData.Values["controller"] == "Drawings" &&
     (string)ViewContext.RouteData.Values["action"] == "Add" ||
-    (string)ViewContext.RouteData.Values["action"] == "Detail")
+    (string)ViewContext.RouteData.Values["action"] == "Detail" ||
+    (string)ViewContext.RouteData.Values["action"] == "RevDetail")
 {
         <text>hidden</text>
 }
