@@ -78,7 +78,7 @@ namespace ComicBookGallery.Controllers
                 return HttpNotFound();
             }
             string[] specificRev = rid.Split('x');
-            var rev = specificRev[1];
+            var rev = Convert.ToInt32(specificRev[1]);
             var drw = Convert.ToInt32(specificRev[0]);
             var revision = _drawingRepository.GetDrwSpecificRevision(drw,rev);
             //return View();

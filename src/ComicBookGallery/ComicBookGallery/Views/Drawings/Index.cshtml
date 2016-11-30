@@ -19,7 +19,7 @@
         <span class="stats-number">@ViewBag.NumOfDrawings.ToString("n0")</span> total
     </div>
     <div class="stats-right">
-        <span class="stats-number">Something</span> total
+        <span class="stats-number">Project Completion %</span> total
     </div>
 </div>
 
@@ -56,35 +56,33 @@
                                 <span class="glyphicon glyphicon-trash"></span><span class="hidden-xs"> Delete</span>
                             </a>
                         </div>
-                        @*@Html.ActionLink("New Rev.", "RevCreate", "Drawings", new { id = drawing.Id }, new { @class = "btn btn-xs btn-info" })
-                        @Html.ActionLink("Edit", "Detail", "Drawings", new { id = drawing.Id }, new { @class = "btn btn-xs btn-info"})*@
                     </td>
                     </tr>
-                    @*<tr>
-                        @{var revisions = DrawingRepository }
-                    </tr>*@
-                    foreach (var revision in drawing.Revisions)
+                    if (drawing.Revisions != null)
                     {
-                    <tr>
-                        <td></td>
-                        <td>@revision.ID</td> 
-                        <td>@revision.Name</td>
-                        <td>
-                            <div class="pull-right">
-                                <a href="@Url.Action("RevDetail", new { rid = drawing.Id + "x" + revision.ID })" class="btn btn-warning btn-sm margin-right">
-                                    <span class="glyphicon glyphicon-edit"></span><span class="hidden-xs"> Edit</span>
-                                </a>
-                                <a href="@Url.Action("Delete", new { id = drawing.Id })" class="btn btn-danger btn-sm">
-                                    <span class="glyphicon glyphicon-trash"></span><span class="hidden-xs"> Delete</span>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
+                        foreach (var revision in drawing.Revisions)
+                        {
+                        <tr>
+                            <td></td>
+                            <td>@revision.ID</td>
+                            <td>@revision.Name</td>
+                            <td>
+                                <div class="pull-right">
+                                    <a href="@Url.Action("RevDetail", new { rid = drawing.Id + "x" + revision.UID })" class="btn btn-warning btn-sm margin-right">
+                                        <span class="glyphicon glyphicon-edit"></span><span class="hidden-xs"> Edit</span>
+                                    </a>
+                                    <a href="@Url.Action("Delete", new { id = drawing.Id })" class="btn btn-danger btn-sm">
+                                        <span class="glyphicon glyphicon-trash"></span><span class="hidden-xs"> Delete</span>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        }
                     }
-                    
-                    
-                
-            }
+
+
+
+                    }
             </tbody>
 
 </table> 

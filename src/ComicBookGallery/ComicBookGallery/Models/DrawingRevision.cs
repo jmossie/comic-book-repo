@@ -23,8 +23,9 @@ namespace ComicBookGallery.Models
         {
 
         }
-        public DrawingRevision(string id, string name, Status.StatusTypes status, int drawingId, int year, int month, int day, string notes = null )
+        public DrawingRevision(int uid, string id, string name, Status.StatusTypes status, int drawingId, int year, int month, int day, string notes = null )
         {
+            UID = uid;
             ID = id;
             Name = name;
             Status = status;
@@ -32,6 +33,7 @@ namespace ComicBookGallery.Models
             CreateDate = new DateTime(year, month, day);
             Notes = notes;
         }
+        public int UID { get; set; }
         [Display(Name = "Revision Name")]
         public string Name { get; set; }
         [Display(Name = "Revision Number")]

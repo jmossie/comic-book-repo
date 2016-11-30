@@ -26,11 +26,12 @@ namespace ComicBookGallery.Data
         {
             return Data.DrawingRevisions;
         }
-        public DrawingRevision GetDrwSpecificRevision(int id, string rid)
+        public DrawingRevision GetDrwSpecificRevision(int id, int rid)
         {
             //List<DrawingRevision> revisions = Data.DrawingRevisions.Where(dr => dr.DrawingId == id).ToList();
-            var drawing = Data.Drawings.Where(d => d.Id == id).SingleOrDefault();
-            var revision = drawing.Revisions.Where(r => r.ID == rid).SingleOrDefault();
+            //var drawing = Data.Drawings.Where(d => d.Id == id).SingleOrDefault();
+            //var revision = drawing.Revisions.Where(r => r.ID == rid).SingleOrDefault();
+            var revision = Data.DrawingRevisions.Where(dr => dr.UID == rid).SingleOrDefault();
             return revision;
         }
         public void AddDrawing(Drawing drawing)
@@ -48,11 +49,21 @@ namespace ComicBookGallery.Data
                 throw new Exception(
                     string.Format("Unable to find a drawing with an ID of {0}", drawing.Id));
             }
-            Data.Drawings[drawingIndex] = drawing;
+            Data.Drawings[drawingIndex].CreateDate = drawing.CreateDate;
+            Data.Drawings[drawingIndex].DrawingNumber = drawing.DrawingNumber;
+            Data.Drawings[drawingIndex].DrawingName = drawing.DrawingName;
         }
         public void UpdateRevision(DrawingRevision revision)
         {
-            //need to complete this but need to first investigate how to work with revision as seperate objects
+            int revisionIndex = Data.DrawingRevisions.FindIndex(dr => dr.UID == revision.UID);
+            Drawing drawing = Data.Drawings.Where(d => d.Id == revision.DrawingId).SingleOrDefault();
+            if (revisionIndex == -1)
+            {
+                throw new Exception(
+                    string.Format("Unable to find a revision with an ID of {0}", revision.UID));
+            }
+            Data.DrawingRevisions[revisionIndex] = revision;
+            drawing.Revisions = Data.DrawingRevisions.Where(dr => dr.DrawingId == revision.DrawingId).ToList();
         }
         public void DeleteDrawing(int Id)
         {
