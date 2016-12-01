@@ -144,6 +144,7 @@
     <Content Include="Views\Drawings\_EntryForm.cshtml" />
     <Content Include="Views\Drawings\Delete.cshtml" />
     <Content Include="Views\Drawings\RevDetail.cshtml" />
+    <Content Include="Views\Drawings\_RevisionForm.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

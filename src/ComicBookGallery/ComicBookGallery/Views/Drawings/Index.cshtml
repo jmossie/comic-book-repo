@@ -49,7 +49,7 @@
                             <a href="@Url.Action("Detail", new { id = drawing.Id })" class="btn btn-warning btn-sm margin-right">
                                 <span class="glyphicon glyphicon-edit"></span><span class="hidden-xs"> Edit</span>
                             </a>
-                            <a href="@Url.Action("RevCreate", new { id = drawing.Id })" class="btn btn-success btn-sm margin-right">
+                            <a href="@Url.Action("RevCreate", new { DrawingId = drawing.Id })" class="btn btn-success btn-sm margin-right">
                                 <span class="glyphicon glyphicon-plus"></span><span class="hidden-xs"> New Rev.</span>
                             </a>
                             <a href="@Url.Action("Delete", new { id = drawing.Id })" class="btn btn-danger btn-sm">

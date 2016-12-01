@@ -97,14 +97,37 @@ namespace ComicBookGallery.Controllers
             SetupStatusSelectListItems();
             return View(revision);
         }
-        public ActionResult RevCreate(int? id)
+
+        public ActionResult RevCreate(int drawingId)
         {
-            if (id == null)
+            string lastrevision = _drawingRepository.GetRevisions().Where(dr => dr.DrawingId == drawingId).
+                                                                 ToList().LastOrDefault().ID;
+            var charrevision = lastrevision.ToCharArray()[0];
+            charrevision++;
+            var nextrevision = charrevision.ToString();
+            var revision = new DrawingRevision()
             {
-                return HttpNotFound();
+                CreateDate = DateTime.Today,
+                DrawingId = drawingId,
+                ID = nextrevision
+            };
+            SetupStatusSelectListItems();
+            return View(revision);
+        }
+
+        [HttpPost]
+        public ActionResult RevCreate(DrawingRevision revision)
+        {
+            //ValidateEntry(drawing);
+            if (ModelState.IsValid)
+            {
+                _drawingRepository.AddRevision(revision);
+                TempData["Message"] = "Your entry was successfully added";
+
+                return RedirectToAction("Index");
             }
-            var drawing = _drawingRepository.GetDrawing((int)id);
-            return View(drawing);
+            SetupStatusSelectListItems();
+            return View(revision);
         }
         public ActionResult Delete(int? id)
         {

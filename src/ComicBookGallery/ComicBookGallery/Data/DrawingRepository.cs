@@ -40,6 +40,14 @@ namespace ComicBookGallery.Data
             drawing.Id = nextAvailableEntryId;
             Data.Drawings.Add(drawing);
         }
+        public void AddRevision(DrawingRevision revision)
+        {
+            int nextAvailableEntryId = Data.DrawingRevisions.Max(dr => dr.UID) + 1;
+            Drawing drawing = Data.Drawings.Where(d => d.Id == revision.DrawingId).SingleOrDefault();
+            revision.UID = nextAvailableEntryId;
+            Data.DrawingRevisions.Add(revision);
+            drawing.Revisions = Data.DrawingRevisions.Where(dr => dr.DrawingId == revision.DrawingId).ToList();
+        }
         public void UpdateDrawing(Drawing drawing)
         {
             int drawingIndex = Data.Drawings.FindIndex(d => d.Id == drawing.Id);
